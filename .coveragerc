@@ -1,0 +1,5 @@
+[run]
+omit =
+    src/async_sunspec/models/*
+    src/async_sunspec/models/**/*.py
+    */async_sunspec/models/*

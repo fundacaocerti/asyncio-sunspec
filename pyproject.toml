@@ -1,0 +1,68 @@
+[project]
+name = "async-sunspec"
+version = "0.1.0"
+description = "Async implementation of SunSpec Modbus communication."
+authors = [
+    { name = "CERTI Foundation", email = "certi@certi.org.br" }
+]
+readme = "README.rst"
+requires-python = ">=3.12"
+dependencies = [
+    "pymodbus==3.12.1",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["sunspec", "modbus", "asyncio", "energy", "der"]
+
+[project.optional-dependencies]
+# Development dependencies
+dev = [
+    "pytest==8.4.2",
+    "pytest-cov==7.0.0",
+    "ruff==0.15.7",
+    "build==1.3.0",
+    "twine==6.2.0",
+]
+
+# Documentation dependencies (used for building docs locally or on RTD)
+docs = [
+    "sphinx>=6.0",
+    "sphinx-rtd-theme",
+    "sphinx-autodoc-typehints",
+    "sphinx-autobuild",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/fundacaocerti/async-sunspec/"
+"Source Code" = "https://github.com/fundacaocerti/async-sunspec"
+"Bug Reports" = "https://github.com/fundacaocerti/async-sunspec/issues"
+"Docs" = "https://async-sunspec.readthedocs.io/en/latest/?badge=latest"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["async_sunspec", "async_sunspec.*"]
+exclude = [
+    "docs*",
+    "examples*",
+    "external*",
+    "tests*",
+    "tmp*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit"]
+pythonpath = ["src", "."]
+addopts = "--cov=async_sunspec --cov-branch --cov-report=term-missing --cov-fail-under=60 --cov-config=.coveragerc"
